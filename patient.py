@@ -1,4 +1,5 @@
 
+
 # Patient Registration System
 
 patients = []
@@ -21,7 +22,5 @@ def register_patient():
     patients.append(patient)
 
     print("\nPatient registered successfully!")
-    print(patient)
 
-
-register_patient()
+    return patient

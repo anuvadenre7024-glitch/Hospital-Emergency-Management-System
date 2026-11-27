@@ -1,10 +1,12 @@
 
 
+
 # HOSPITAL EMERGENCY MANAGEMENT SYSTEM
 
 from patient import register_patient
 from priority_queue import add_patient, show_waiting_list, treat_next_patient
 from doctor import show_doctors, assign_doctor, release_doctor
+from waiting_queue import add_to_queue, show_queue, treat_next_patient as treat_normal_patient
 
 
 def main():
@@ -19,7 +21,10 @@ def main():
         print("5. Show Doctors")
         print("6. Assign Doctor")
         print("7. Release Doctor")
-        print("8. Exit")
+        print("8. Add Normal Patient")
+        print("9. Show Normal Waiting Queue")
+        print("10. Treat Next Normal Patient")
+        print("11. Exit")
 
         choice = input("\nEnter your choice: ")
 
@@ -60,6 +65,16 @@ def main():
             release_doctor(doctor_id)
 
         elif choice == "8":
+            name = input("Enter Patient Name: ")
+            add_to_queue(name)
+
+        elif choice == "9":
+            show_queue()
+
+        elif choice == "10":
+            treat_normal_patient()
+
+        elif choice == "11":
             print("Thank you for using our system!")
             break
 

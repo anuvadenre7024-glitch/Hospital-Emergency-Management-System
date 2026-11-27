@@ -1,36 +1,53 @@
 
 # HOSPITAL EMERGENCY MANAGEMENT SYSTEM
 
+from patient import register_patient
+from priority_queue import add_patient, show_waiting_list, treat_next_patient
+
+
 def main():
     while True:
         print("\n================================")
         print(" HOSPITAL MANAGEMENT SYSTEM")
         print("================================")
         print("1. Patient Registration")
-        print("2. Emergency Priority Queue")
-        print("3. Doctor Management")
-        print("4. Patient Waiting Queue")
-        print("5. Search Patient")
-        print("6. Exit")
+        print("2. Add Emergency Patient")
+        print("3. Show Emergency Priority Queue")
+        print("4. Treat Next Emergency Patient")
+        print("5. Exit")
 
         choice = input("\nEnter your choice: ")
 
         if choice == "1":
-            print("Patient Registration Selected")
+            register_patient()
 
         elif choice == "2":
-            print("Emergency Priority Queue Selected")
+            patient_id = input("Enter Patient ID: ")
+            name = input("Enter Patient Name: ")
+
+            print("\nPriority levels:")
+            print("1. Critical")
+            print("2. Serious")
+            print("3. Stable")
+
+            try:
+                priority = int(input("Enter priority (1-3): "))
+
+                if priority in (1, 2, 3):
+                    add_patient(patient_id, name, priority)
+                else:
+                    print("Invalid priority! Choose 1, 2 or 3.")
+
+            except ValueError:
+                print("Please enter a valid number.")
 
         elif choice == "3":
-            print("Doctor Management Selected")
+            show_waiting_list()
 
         elif choice == "4":
-            print("Patient Waiting Queue Selected")
+            treat_next_patient()
 
         elif choice == "5":
-            print("Patient Search Selected")
-
-        elif choice == "6":
             print("Thank you for using our system!")
             break
 

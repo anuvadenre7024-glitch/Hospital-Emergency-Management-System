@@ -1,23 +1,38 @@
 
-# Emergency Priority Management
+
+# Emergency Priority Management System
 
 import heapq
 
 patients = []
 
+
 def add_patient(patient_id, name, priority):
     patient = (priority, patient_id, name)
     heapq.heappush(patients, patient)
-    print("Patient added successfully!")
+    print("Patient added to emergency queue successfully!")
+
 
 def show_waiting_list():
     print("\n--- Emergency Waiting List ---")
 
-    for patient in sorted(patients):
-        print(patient)
+    if not patients:
+        print("No emergency patients waiting.")
+        return
 
-add_patient("P101", "Rahul", 1)
-add_patient("P102", "Aman", 3)
-add_patient("P103", "Priya", 2)
+    for priority, patient_id, name in sorted(patients):
+        print(
+            "Priority:", priority,
+            "| ID:", patient_id,
+            "| Name:", name
+        )
 
-show_waiting_list()
+
+def treat_next_patient():
+    if patients:
+        priority, patient_id, name = heapq.heappop(patients)
+        print("\nNext emergency patient:", name)
+        print("Patient ID:", patient_id)
+        print("Priority:", priority)
+    else:
+        print("No emergency patients waiting.")
